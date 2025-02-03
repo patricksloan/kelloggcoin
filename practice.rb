@@ -27,3 +27,35 @@ blockchain = [
 # Anthony's KelloggCoin balance is 2650
 
 # 👇👇👇 Your code HERE 👇👇👇
+
+# creating empty "balances" hash
+balances = {}
+
+# Loop through each transaction
+for transaction in blockchain
+  from_user = transaction["from_user"]
+  to_user = transaction["to_user"]
+  amount = transaction["amount"]
+
+  # sets new balances to 0 before modifying
+  if balances[from_user] == nil && from_user != nil
+    balances[from_user] = 0
+  end
+
+  if balances[to_user] == nil
+    balances[to_user] = 0
+  end
+
+  # if sender exists, subtract from their balance
+  if from_user != nil
+    balances[from_user] = balances[from_user] - amount
+  end
+
+  # add amount to receiver
+  balances[to_user] = balances[to_user] + amount
+end
+
+  # print balances
+  for user, balance in balances
+    puts "#{user.capitalize}'s KelloggCoin Balance is #{balance}"
+  end 
